@@ -1,6 +1,7 @@
-package com.rakib.recyclerviewsample
+package com.rakib.recyclerviewsample.API
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.rakib.recyclerviewsample.User
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -38,5 +39,6 @@ interface UserApiService {
 }
 
 object UserApi {
-    val retrofitService : UserApiService by lazy { retrofit.create(UserApiService::class.java) }
+    val retrofitService : UserApiService by lazy { retrofit.create(
+        UserApiService::class.java) }
 }

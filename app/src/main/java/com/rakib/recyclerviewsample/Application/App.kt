@@ -1,4 +1,4 @@
-package com.rakib.recyclerviewsample
+package com.rakib.recyclerviewsample.Application
 
 import android.app.Application
 import timber.log.Timber

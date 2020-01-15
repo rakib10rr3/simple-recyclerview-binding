@@ -1,8 +1,11 @@
 package com.rakib.recyclerviewsample
 
+import android.os.Parcelable
 import androidx.annotation.Keep
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Keep
 data class User(
     @Json(name = "address")
@@ -21,7 +24,8 @@ data class User(
     var username: String?, // Moriah.Stanton
     @Json(name = "website")
     var website: String? // ambrose.net
-) {
+) : Parcelable {
+    @Parcelize
     @Keep
     data class Address(
         @Json(name = "city")
@@ -34,16 +38,18 @@ data class User(
         var suite: String?, // Suite 198
         @Json(name = "zipcode")
         var zipCode: String? // 31428-2261
-    ) {
+    ) :Parcelable {
+        @Parcelize
         @Keep
         data class Geo(
             @Json(name = "lat")
             var lat: String?, // -38.2386
             @Json(name = "lng")
             var lng: String? // 57.2232
-        )
+        ) : Parcelable
     }
 
+    @Parcelize
     @Keep
     data class Company(
         @Json(name = "bs")
@@ -52,5 +58,5 @@ data class User(
         var catchPhrase: String?, // Centralized empowering task-force
         @Json(name = "name")
         var name: String? // Hoeger LLC
-    )
+    ) : Parcelable
 }

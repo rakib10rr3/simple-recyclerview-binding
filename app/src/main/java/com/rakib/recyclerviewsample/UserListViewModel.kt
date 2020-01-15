@@ -1,12 +1,11 @@
 package com.rakib.recyclerviewsample
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rakib.recyclerviewsample.API.UserApi
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -24,6 +23,10 @@ class UserListViewModel : ViewModel() {
     private val _users = MutableLiveData<List<User>>()
     val users: LiveData<List<User>>?
         get() = _users
+
+    private val _navigateToUserDetails = MutableLiveData<User>()
+    val navigateToUserDetails : LiveData<User>
+        get() = _navigateToUserDetails
 
     init {
         getUser()
@@ -46,6 +49,15 @@ class UserListViewModel : ViewModel() {
                 _users.value = ArrayList()
             }
         }
+    }
+
+    fun displayUserDetails(user: User)
+    {
+        _navigateToUserDetails.value = user
+    }
+
+    fun displayUserDetailsComplete(){
+        _navigateToUserDetails.value = null
     }
 
 }

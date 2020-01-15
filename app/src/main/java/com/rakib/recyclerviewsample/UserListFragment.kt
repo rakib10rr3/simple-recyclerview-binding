@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.rakib.recyclerviewsample.databinding.FragmentUserListBinding
 
 /**
@@ -30,7 +33,18 @@ class UserListFragment : Fragment() {
 
         binding.userListViewModel = viewModel
 
-        binding.userRV.adapter = UserAdapter()
+        binding.userRV.adapter = UserAdapter(UserListener {
+            //user -> Toast.makeText(context,"${user?.address?.city}", Toast.LENGTH_SHORT).show()
+            viewModel.displayUserDetails(it)
+        })
+
+        viewModel.navigateToUserDetails.observe(this, Observer {
+                it?.let {
+                    findNavController().navigate(UserListFragmentDirections.actionUserListFragmentToUserDetailsFragment(it))
+                    viewModel.displayUserDetailsComplete()
+                }
+            }
+        )
 
         return binding.root
     }

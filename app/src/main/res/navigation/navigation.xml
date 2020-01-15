@@ -8,15 +8,23 @@
     <fragment
         android:id="@+id/userListFragment"
         android:name="com.rakib.recyclerviewsample.UserListFragment"
-        android:label="fragment_user_list"
-        tools:layout="@layout/fragment_user_list" >
+        android:label="Users"
+        tools:layout="@layout/fragment_user_list">
         <action
             android:id="@+id/action_userListFragment_to_userDetailsFragment"
-            app:destination="@id/userDetailsFragment" />
+            app:destination="@id/userDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/userDetailsFragment"
         android:name="com.rakib.recyclerviewsample.UserDetailsFragment"
-        android:label="fragment_user_details"
-        tools:layout="@layout/fragment_user_details" />
+        android:label="Details"
+        tools:layout="@layout/fragment_user_details" >
+        <argument
+            android:name="user"
+            app:argType="com.rakib.recyclerviewsample.User" />
+    </fragment>
 </navigation>

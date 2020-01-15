@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.rakib.recyclerviewsample.databinding.ListItemUserBinding
 
-class UserAdapter :  ListAdapter<User,UserAdapter.UserViewHolder>(DiffUserCallback){
+class UserAdapter(val clickListener: UserListener) :  ListAdapter<User,UserAdapter.UserViewHolder>(DiffUserCallback){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         return UserViewHolder.from(parent)
     }
@@ -15,7 +15,7 @@ class UserAdapter :  ListAdapter<User,UserAdapter.UserViewHolder>(DiffUserCallba
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val user = getItem(position)
-        holder.bind(user)
+        holder.bind(user,clickListener)
     }
 
 
@@ -41,10 +41,18 @@ class UserAdapter :  ListAdapter<User,UserAdapter.UserViewHolder>(DiffUserCallba
             }
         }
 
-        fun bind(user: User){
+        fun bind(
+            user: User,
+            clickListener: UserListener
+        ){
             binding.user = user
             binding.executePendingBindings()
+            binding.clickListener = clickListener
         }
     }
+}
+
+class UserListener(val clickListener : (userId : User) -> Unit){
+    fun onClick(user: User) = clickListener(user)
 }
 
