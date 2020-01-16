@@ -20,7 +20,24 @@ fun showHideProgressbar(progressBar: ProgressBar, userStatus: UserStatus?) {
         }
         else ->
             progressBar.visibility = View.VISIBLE
+    }
+}
 
+@BindingAdapter("visibility", "count")
+fun bindResultCount(textView: TextView, userStatus: UserStatus?, count : Int){
+    when (userStatus) {
+        UserStatus.LOADING -> {
+            textView.visibility = View.INVISIBLE
+        }
+        UserStatus.DONE -> {
+            textView.visibility = View.VISIBLE
+            textView.text = count.toString()
+        }
+        UserStatus.ERROR->{
+            textView.visibility = View.INVISIBLE
+        }
+        else ->
+            textView.visibility = View.INVISIBLE
     }
 
 }
@@ -33,6 +50,11 @@ fun RecyclerView.bindRecyclerView(data: List<User>?) {
     }
 }
 
+
+//@BindingAdapter("resultStatus")
+//fun showCount(progressBar: ProgressBar, textView: TextView, userStatus: UserStatus?, var  count : Int = 0){
+//
+//}
 
 @BindingAdapter("name")
 fun bindName(textView: TextView, user: User) {

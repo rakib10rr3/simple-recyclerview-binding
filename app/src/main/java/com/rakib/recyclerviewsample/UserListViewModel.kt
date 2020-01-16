@@ -14,7 +14,7 @@ import java.lang.Exception
 
 class UserListViewModel : ViewModel() {
 
-    lateinit var userList: List<User>
+    private var userList: List<User>? = null
 
     private val _status = MutableLiveData<UserStatus>()
     val status: LiveData<UserStatus>
