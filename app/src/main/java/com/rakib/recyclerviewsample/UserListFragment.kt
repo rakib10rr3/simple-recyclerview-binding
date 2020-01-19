@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.rakib.recyclerviewsample.databinding.FragmentUserListBinding
 
@@ -45,6 +46,10 @@ class UserListFragment : Fragment() {
                 }
             }
         )
+
+        binding.btn.setOnClickListener {
+            view: View? ->  view?.findNavController()?.navigate(R.id.testFragment)
+        }
 
         return binding.root
     }

@@ -9,7 +9,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
-import java.lang.Exception
 
 
 class UserListViewModel : ViewModel() {
@@ -41,7 +40,8 @@ class UserListViewModel : ViewModel() {
                 }
                 _status.value = UserStatus.LOADING
                 _users.value = userList
-                Timber.i("$userList")
+//                Timber.i("$userList")
+                Timber.i("${userList?.size}")
                 _status.value = UserStatus.DONE
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -58,6 +58,11 @@ class UserListViewModel : ViewModel() {
 
     fun displayUserDetailsComplete(){
         _navigateToUserDetails.value = null
+    }
+
+    fun go()
+    {
+//        Activity.findNavController().navigate(R.id.userDetailsFragment)
     }
 
 }
