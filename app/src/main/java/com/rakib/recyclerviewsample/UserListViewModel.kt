@@ -15,8 +15,8 @@ class UserListViewModel : ViewModel() {
 
     private var userList: List<User>? = null
 
-    private val _status = MutableLiveData<UserStatus>()
-    val status: LiveData<UserStatus>
+    private val _status = MutableLiveData<Status>()
+    val status : LiveData<Status>
         get() = _status
 
     private val _users = MutableLiveData<List<User>>()
@@ -38,14 +38,14 @@ class UserListViewModel : ViewModel() {
                 withContext(Dispatchers.IO) {
                     userList = UserApi.retrofitService.getUsers()
                 }
-                _status.value = UserStatus.LOADING
+                _status.value = Status.LOADING
                 _users.value = userList
 //                Timber.i("$userList")
                 Timber.i("${userList?.size}")
-                _status.value = UserStatus.DONE
+                _status.value = Status.DONE
             } catch (e: Exception) {
                 e.printStackTrace()
-                _status.value = UserStatus.ERROR
+                _status.value = Status.ERROR
                 _users.value = ArrayList()
             }
         }
@@ -67,4 +67,4 @@ class UserListViewModel : ViewModel() {
 
 }
 
-enum class UserStatus { LOADING, ERROR, DONE }
+//enum class UserStatus { LOADING, ERROR, DONE }

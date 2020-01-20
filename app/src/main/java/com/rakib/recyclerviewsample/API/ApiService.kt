@@ -1,6 +1,7 @@
 package com.rakib.recyclerviewsample.API
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.rakib.recyclerviewsample.Post
 import com.rakib.recyclerviewsample.User
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -36,6 +37,9 @@ interface UserApiService {
 
     @GET("users")
     suspend fun getUsers(): List<User>
+
+    @GET("posts")
+    suspend fun getPosts(): List<Post>
 }
 
 object UserApi {

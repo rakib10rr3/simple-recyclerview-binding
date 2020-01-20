@@ -48,7 +48,7 @@ class UserListFragment : Fragment() {
         )
 
         binding.btn.setOnClickListener {
-            view: View? ->  view?.findNavController()?.navigate(R.id.testFragment)
+            view: View? ->  view?.findNavController()?.navigate(R.id.viewPagerFragment)
         }
 
         return binding.root

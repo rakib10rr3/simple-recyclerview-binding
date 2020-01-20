@@ -7,15 +7,15 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 
 @BindingAdapter("progressbarStatus")
-fun showHideProgressbar(progressBar: ProgressBar, userStatus: UserStatus?) {
+fun showHideProgressbar(progressBar: ProgressBar, userStatus: Status?) {
     when (userStatus) {
-        UserStatus.LOADING -> {
+        Status.LOADING -> {
             progressBar.visibility = View.VISIBLE
         }
-        UserStatus.DONE -> {
+        Status.DONE -> {
             progressBar.visibility = View.INVISIBLE
         }
-        UserStatus.ERROR->{
+        Status.ERROR->{
             progressBar.visibility = View.VISIBLE
         }
         else ->
@@ -24,16 +24,16 @@ fun showHideProgressbar(progressBar: ProgressBar, userStatus: UserStatus?) {
 }
 
 @BindingAdapter("visibility", "count")
-fun bindResultCount(textView: TextView, userStatus: UserStatus?, count : Int){
+fun bindResultCount(textView: TextView, userStatus: Status?, count : Int){
     when (userStatus) {
-        UserStatus.LOADING -> {
+        Status.LOADING -> {
             textView.visibility = View.INVISIBLE
         }
-        UserStatus.DONE -> {
+        Status.DONE -> {
             textView.visibility = View.VISIBLE
             textView.text = count.toString()
         }
-        UserStatus.ERROR->{
+        Status.ERROR->{
             textView.visibility = View.INVISIBLE
         }
         else ->
@@ -43,13 +43,21 @@ fun bindResultCount(textView: TextView, userStatus: UserStatus?, count : Int){
 }
 
 @BindingAdapter("list")
-fun RecyclerView.bindRecyclerView(data: List<User>?) {
-    val adapter = this.adapter as UserAdapter
+fun bindUsersRecyclerView(recyclerView: RecyclerView, data: List<User>?) {
+    val adapter = recyclerView.adapter as UserAdapter
     data?.let {
         adapter.submitList(data)
     }
 }
 
+
+@BindingAdapter("postList")
+fun bindPostsRecyclerView(recyclerView: RecyclerView, data: List<Post>?) {
+    val adapter = recyclerView.adapter as PostAdapter
+    data?.let {
+        adapter.submitList(data)
+    }
+}
 
 //@BindingAdapter("resultStatus")
 //fun showCount(progressBar: ProgressBar, textView: TextView, userStatus: UserStatus?, var  count : Int = 0){

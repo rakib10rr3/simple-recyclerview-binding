@@ -35,4 +35,19 @@
         android:name="com.rakib.recyclerviewsample.TestFragment"
         android:label="Test"
         tools:layout="@layout/fragment_test" />
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="com.rakib.recyclerviewsample.ViewPagerFragment"
+        android:label="Viewpager"
+        tools:layout="@layout/fragment_view_pager" />
+    <fragment
+        android:id="@+id/testViewPagerFragment"
+        android:name="com.rakib.recyclerviewsample.TestViewPagerFragment"
+        android:label="fragment_test_view_pager"
+        tools:layout="@layout/fragment_test_view_pager" />
+    <fragment
+        android:id="@+id/postListFragment"
+        android:name="com.rakib.recyclerviewsample.PostListFragment"
+        android:label="Posts"
+        tools:layout="@layout/fragment_post_list" />
 </navigation>
