@@ -8,22 +8,22 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Keep
 data class User(
-    @Json(name = "address")
-    var address: Address?,
-    @Json(name = "company")
-    var company: Company?,
+//    @Json(name = "address")
+//    var address: Address?,
+//    @Json(name = "company")
+//    var company: Company?,
     @Json(name = "email")
     var email: String?, // Rey.Padberg@karina.biz
     @Json(name = "id")
     var id: Int?, // 10
     @Json(name = "name")
     var name: String?, // Clementina DuBuque
-    @Json(name = "phone")
-    var phone: String?, // 024-648-3804
+//    @Json(name = "phone")
+//    var phone: String?, // 024-648-3804
     @Json(name = "username")
-    var username: String?, // Moriah.Stanton
-    @Json(name = "website")
-    var website: String? // ambrose.net
+    var username: String? // Moriah.Stanton
+//    @Json(name = "website")
+//    var website: String? // ambrose.net
 ) : Parcelable {
     @Parcelize
     @Keep
