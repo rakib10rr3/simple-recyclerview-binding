@@ -36,6 +36,7 @@ class UserListFragment : Fragment() {
 
         binding.userRV.adapter = UserAdapter(
             context!!,
+            this.viewLifecycleOwner,
             UserListener { user ->
                 Toast.makeText(context, "${user.name}", Toast.LENGTH_SHORT).show()
 //            viewModel.displayUserDetails(it)
@@ -50,8 +51,7 @@ class UserListFragment : Fragment() {
                 )
                 viewModel.displayUserDetailsComplete()
             }
-        }
-        )
+        })
 
         binding.btn.setOnClickListener { view: View? ->
             view?.findNavController()?.navigate(R.id.viewPagerFragment)

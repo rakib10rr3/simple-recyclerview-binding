@@ -16,7 +16,7 @@ class UserListViewModel : ViewModel() {
     private var userList: List<User>? = null
 
     private val _status = MutableLiveData<Status>()
-    val status : LiveData<Status>
+    val status: LiveData<Status>
         get() = _status
 
     private val _users = MutableLiveData<List<User>>()
@@ -24,7 +24,7 @@ class UserListViewModel : ViewModel() {
         get() = _users
 
     private val _navigateToUserDetails = MutableLiveData<User>()
-    val navigateToUserDetails : LiveData<User>
+    val navigateToUserDetails: LiveData<User>
         get() = _navigateToUserDetails
 
     init {
@@ -38,8 +38,28 @@ class UserListViewModel : ViewModel() {
                 withContext(Dispatchers.IO) {
                     userList = UserApi.retrofitService.getUsers()
                 }
+
+                var users = mutableListOf<User>()
+
+                // note: just making the list big
+//                userList?.apply {
+//                    users.addAll(this.toTypedArray().copyOf())
+//                }
+
+                for (i in 1..50) {
+                    users.add(
+                        User(
+                            id = i,
+                            name = "aaa",
+                            username = "bbb",
+                            email = "ccc@ddd.eee"
+                        )
+                    )
+                }
+
                 _status.value = Status.LOADING
-                _users.value = userList
+//                _users.value = userList
+                _users.value = users
 //                Timber.i("$userList")
                 Timber.i("${userList?.size}")
                 _status.value = Status.DONE
@@ -51,17 +71,15 @@ class UserListViewModel : ViewModel() {
         }
     }
 
-    fun displayUserDetails(user: User)
-    {
+    fun displayUserDetails(user: User) {
         _navigateToUserDetails.value = user
     }
 
-    fun displayUserDetailsComplete(){
+    fun displayUserDetailsComplete() {
         _navigateToUserDetails.value = null
     }
 
-    fun go()
-    {
+    fun go() {
 //        Activity.findNavController().navigate(R.id.userDetailsFragment)
     }
 
